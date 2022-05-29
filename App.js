@@ -12,7 +12,7 @@
  import { DetailsScreen } from './src/views/screen/DetailScreen';
  import { InputOTPScreen } from './src/views/screen/InputOTPScreen';
  import { SignUpScreen } from './src/views/screen/SignUpScreen';
- 
+ import { SignInScreen } from './src/views/screen/SignInScreen';
  const Stack = createNativeStackNavigator();
  
   
@@ -32,6 +32,11 @@
         name="Detail" 
         component={DetailsScreen} 
         options={{title: 'Detail', headerBackTitle:  ''}} 
+        />
+        <Stack.Screen 
+        name="SignIn" 
+        component={SignInScreen} 
+        options={{title: 'SignIn', headerBackTitle:  ''}} 
         />
       </Stack.Navigator>
     </NavigationContainer>

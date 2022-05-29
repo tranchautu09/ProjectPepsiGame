@@ -57,7 +57,7 @@ export function InputOTPScreen({ navigation }) {
         setInternalVal("")
     }
 
-    useEffect(() =>{
+    useEffect(() =>{ 
         textInput.focus() 
       },[])
 
