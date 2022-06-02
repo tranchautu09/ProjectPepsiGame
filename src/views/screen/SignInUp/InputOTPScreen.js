@@ -37,9 +37,9 @@ export function InputOTPScreen({ navigation }) {
 
     const onChangeText = (val) => {
         setInternalVal(val)
-        if(val.length === lengthInput){
-            navigation.navigate('Home')
-        }
+        // if(val.length === lengthInput){
+        //     navigation.navigate('Home')
+        // }
     }
 
     const onResendOTP = () =>{
@@ -53,8 +53,8 @@ export function InputOTPScreen({ navigation }) {
         }
     }
 
-    const onChangeNumber = () =>{
-        setInternalVal("")
+    const onChangeAccept = () =>{
+        navigation.navigate('HomePage')
     }
 
     useEffect(() =>{ 
@@ -100,9 +100,9 @@ export function InputOTPScreen({ navigation }) {
                         </View>
                     </View>
                     <View style={styles.bottomView}>
-                            <TouchableOpacity onPress={onChangeNumber}>
-                                <View style={styles.btnChangeNumber}>
-                                    <Text style={styles.textChange}>Xác nhận</Text>
+                            <TouchableOpacity onPress={onChangeAccept}>
+                                <View style={styles.btnChangeAccept}>
+                                    <Text style={styles.textAccept}>Xác nhận</Text>
                                 </View>
 
                             </TouchableOpacity>
@@ -131,7 +131,7 @@ export function InputOTPScreen({ navigation }) {
   const styles = StyleSheet.create({
     container: {
         flex: 1,
-      
+        
       },
     containerAvoidingView: {
         flex: 1,
@@ -176,7 +176,7 @@ export function InputOTPScreen({ navigation }) {
         alignItems: 'flex-start',
         justifyContent: 'center'
     },
-    textChange:{
+    textAccept:{
         color: '#234DB7',  
         alignItems:'center',
         fontSize: 15
