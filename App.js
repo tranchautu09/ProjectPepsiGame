@@ -9,11 +9,11 @@
  import { Button, View, Text } from 'react-native';
  import { NavigationContainer } from '@react-navigation/native';
  import { createNativeStackNavigator } from '@react-navigation/native-stack';
- import { DetailsScreen } from './src/views/screen/SignInUp/DetailScreen';
- import { InputOTPScreen } from './src/views/screen/SignInUp/InputOTPScreen';
- import { SignUpScreen } from './src/views/screen/SignInUp/SignUpScreen';
- import { SignInScreen } from './src/views/screen/SignInUp/SignInScreen';
- import { HomePageScreen } from './src/views/screen/Home/HomePageScreen';
+//  import { DetailsScreen } from './src/views/screen/SignInUp/DetailScreen';
+//  import { InputOTPScreen } from './src/views/screen/SignInUp/InputOTPScreen';
+//  import { SignUpScreen } from './src/views/screen/SignInUp/SignUpScreen';
+//  import { SignInScreen } from './src/views/screen/SignInUp/SignInScreen';
+//  import { HomePageScreen } from './src/views/screen/Home/HomePageScreen';
  const Stack = createNativeStackNavigator();
  
   
