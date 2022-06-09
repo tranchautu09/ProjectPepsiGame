@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import {Countries} from './Countries'
 import { render } from 'react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod';
 //import { useEffect, useRef } from 'react/cjs/react.production.min';
-export function SignUpScreen({ navigation }) {
+export function SignIn({ navigation }) {
   let textInput = useRef(null)
   const defaultCodeCountry = "+84"  
   const defaultMaskCountry = "794 120 889"
@@ -30,9 +30,9 @@ export function SignUpScreen({ navigation }) {
       navigation.navigate('InputOTP')
     }
   }
-  const onPressSignIn = () =>{
+  const onPressSignUp = () =>{
  
-      navigation.navigate('SignIn')
+      navigation.navigate('SignUp')
    
   }
 
@@ -126,7 +126,7 @@ export function SignUpScreen({ navigation }) {
                   ref={(input) => textInput = input}
                   style={styles.phoneInputStyle}
                   placeholder = {placeholder}
-                  keyboardType="numeric"
+                  keyboardType=""
                   value={phoneNumber}
                   onChangeText={onChangePhone}
                   secureTextEntry ={false}
@@ -135,29 +135,6 @@ export function SignUpScreen({ navigation }) {
                   autoFocus={focusInput}
                 />
             </View>
-            <View style={[styles.containerInput,
-              {borderBottomColor: focusInput ? '#244DB7' : '#ffffff'}
-              ]}>
-                <TouchableOpacity onPress={onShowHideModal}>
-                    <View style={styles.openDialogView}>
-                      <Text>{ "Name"} </Text>
-                    </View>
-                </TouchableOpacity>
-                {renderModal()}
-                <TextInput
-                  ref={(input) => textInput = input}
-                  style={styles.phoneInputStyle}
-                  // placeholder = {placeholder}
-                  // keyboardType="numeric"
-                  // value={phoneNumber}
-                  // onChangeText={onChangePhone}
-                  // secureTextEntry ={false}
-                  // onFocus={onChangeFocus}
-                  // onBlur={onChangeBlur}
-                  // autoFocus={focusInput}
-                />
-            </View>
-
             <View style={styles.viewBottom}>
               <TouchableOpacity onPress={onPressContinue}>
                 <View style={[
@@ -166,10 +143,10 @@ export function SignUpScreen({ navigation }) {
                 </View>
               </TouchableOpacity>
             <Text style={styles.textOr}>{"Hoặc"}</Text>
-            <TouchableOpacity onPress={onPressSignIn}>
+            <TouchableOpacity onPress={onPressSignUp}>
                 <View style={[
                   styles.btnContinue, {backgroundColor: '#244DB7' }]}>
-                  <Text style={styles.textContinue}>Đăng Nhập</Text>
+                  <Text style={styles.textContinue}>Đăng Ký</Text>
                 </View>
               </TouchableOpacity>
             </View>
