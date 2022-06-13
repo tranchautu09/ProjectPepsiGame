@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {GOBACK_BUTTON, LOGOUT_BUTTON} from '../../../assets/images';
+import {GOBACK_BUTTON, LOGOUT_BUTTON} from '../../../../assets//images';
 
 const windowHeight = Dimensions.get('window').height;
 
