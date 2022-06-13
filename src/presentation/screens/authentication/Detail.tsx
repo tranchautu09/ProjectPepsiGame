@@ -7,7 +7,7 @@ import {   Text,
   ImageBackground,
 } from 'react-native';
 
-import Header from '../../components/header';
+import Header from '../../components/header/header';
 import {SCREEN_TERM} from '../../../../assets/images';
 
 const windowWidth = Dimensions.get('window').width;

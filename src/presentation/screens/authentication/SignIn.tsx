@@ -1,267 +1,242 @@
-import React, {useState,useEffect, useRef} from 'react';
-import { Button, View, Text, StyleSheet, KeyboardAvoidingView ,Modal} from 'react-native';
+// import React, {useEffect, useState} from 'react';
+// import {
+//   Text,
+//   View,
+//   StyleSheet,
+//   Dimensions,
+//   Image,
+//   ImageBackground,
+//   Alert,
+//   ActivityIndicator,
+// } from 'react-native';
+// // import {
+// //   THREECANONE,
+// //   BUTTON_RED,
+// //   BUTTON_WHITE,
+// // } from '../../../../../resource/images';
+// // import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+// // import TextInputField from '../../../components/inputs/TextInputField';
+// // import RectangleButton from '../../../components/buttons/rectangle-button';
+// // import {SCREEN_SIGN} from '../../../../../resource/images';
+// // import {Formik} from 'formik';
+// // import * as Yup from 'yup';
+// // import {useDispatch, useSelector} from 'react-redux';
+// // import {RootState} from '../../../redux/store';
+// // import {
+// //   signIn,
+// //   requestOtp,
+// // } from '../../../redux/actions/authentication.actions';
 
-import {TextInput,FlatList, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
-//import { FlatList } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import {Countries} from './Countries'
-import { render } from 'react-native/Libraries/Renderer/implementations/ReactNativeRenderer-prod';
-//import { useEffect, useRef } from 'react/cjs/react.production.min';
-export function SignIn({ navigation }) {
-  let textInput = useRef(null)
-  const defaultCodeCountry = "+84"  
-  const defaultMaskCountry = "794 120 889"
-  const [phoneNumber, setPhoneNumber] = useState();
-  const [focusInput, setFocusInput] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false)
-  const [dataCountries, setDataCountries] = useState(Countries)
-  const [codeCountry, setCodeCountry] = useState(defaultCodeCountry)
-  const [placeholder, setPlaceholder] = useState(defaultMaskCountry)
-  const onShowHideModal = () =>{
-    setModalVisible(!modalVisible)
-  }
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
-  const onChangePhone = (number) => {
-    setPhoneNumber(number)
-  } 
- 
-  const onPressContinue = () =>{
-    if(phoneNumber){
-      navigation.navigate('InputOTP')
-    }
-  }
-  const onPressSignUp = () =>{
- 
-      navigation.navigate('SignUp')
-   
-  }
+// const phoneRegExp =
+//   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
-  const onChangeFocus = () =>{
-    setFocusInput(true)
-  }
+// const signInSchema = Yup.object({
+//   phoneNumber: Yup.string()
+//     .required('Cần nhập số điện thoại!')
+//     .min(9, 'Số điện thoại có tối thiểu 9 số.')
+//     .max(12, 'Số điện thoại có tối đa 12 số.')
+//     .matches(phoneRegExp, 'Số điện thoại không hợp lệ!'),
+// });
 
-  const onChangeBlur = () =>{
-    setFocusInput(false)
-  }
+// const SignIn: React.FC = (props: any) => {
+//   const {navigation} = props;
+//   const dispatch = useDispatch();
+//   const isUserConfirmed = useSelector(
+//     (state: RootState) => state.authentication.isUserConfirmed,
+//   );
+//   const isLoading = useSelector(
+//     (state: RootState) => state.authentication.isAuthenticating,
+//   );
+//   const otpConfirmation = useSelector(
+//     (state: RootState) => state.authentication.otpConfirmation,
+//   );
+//   const [inputPhoneNumber, setInputPhoneNumber] = useState('');
+//   const [fixedPhoneNumber, setFixedPhoneNumber] = useState('');
 
-  useEffect(() =>{
-    textInput.focus()
-  },[])
+//   useEffect(() => {
+//     let strings = inputPhoneNumber.split('');
+//     strings[0] = '+84';
+//     let result = strings.join('');
+//     setFixedPhoneNumber(result);
+//   }, [inputPhoneNumber]);
 
-  const fillterCountries = (value) => {
-    if(value){
-      const countryData = dataCountries.filter(
-        (obj) => (obj.en.indexOf(value) > -1 || obj.dialCode.indexOf(value) >-1 ))
-        setDataCountries(countryData)
-    }else{
-      setDataCountries(Countries)
-    }
-  }
-  const onCountryChange = (item) => {
-      setCodeCountry(item.dialCode)
-      setPlaceholder(item.mask)
-      onShowHideModal()
-  }
+//   useEffect(() => {
+//     handleSignInComplete();
+//   }, [isUserConfirmed]);
 
-  let renderModal =()=>{
-    return (
-      <Modal animationType="slide" transparent = {false} visible={modalVisible}>
-        <SafeAreaView style={{flex:1}}>
-          <View style={styles.modalContainer}>
-            <View style={styles.filterInputContainer}>
-            <TextInput
-              autoFocus={true}
-              onChangeText={fillterCountries}
-              placeholder={'Filter'}
-              focusable={true}
-              style={styles.filterInputStyle}
-            />
-            </View>
-           
-             <FlatList
-            style={{flex:1}}
-            data = {dataCountries}
-            extraData={dataCountries}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem = {
-              ({item}) => (
-                  <TouchableWithoutFeedback onPress={() => onCountryChange(item)}>
-                      <View style={styles.countryModalStyle}>
-                          <View style={styles.modalItemContainer}>
-                          <Text style={styles.modalItemName}>{item.en}</Text>
-                          <Text style={styles.modalItemDiaCode}>{item.dialCode}</Text>
-                          </View>
-                      </View>
-                  </TouchableWithoutFeedback>
-              )
-            }
-          />
-          </View>
-            <TouchableOpacity onPress={onShowHideModal} style={styles.closeButtonStyle}>
-              <Text style={styles.closeTextStyle}>{'close'}</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
-      </Modal>
-    )
-  }
+//   useEffect(() => {
+//     handleRequestOtpComplete();
+//   }, [otpConfirmation]);
 
-  return (
-      <View style={styles.container}>
-        <KeyboardAvoidingView
-          keyboardVerticalOffset={50} 
-          behavior={'padding'}
-          style={styles.containerAvoidingView}
-        >
-          <Text style={styles.textTitle}>{"Nhập số điện thoại để đăng ký"}</Text>
-            <View style={[styles.containerInput,
-              {borderBottomColor: focusInput ? '#244DB7' : '#ffffff'}
-              ]}>
-                <TouchableOpacity onPress={onShowHideModal}>
-                    <View style={styles.openDialogView}>
-                      <Text>{codeCountry + " |"} </Text>
-                    </View>
-                </TouchableOpacity>
-                {renderModal()}
-                <TextInput
-                  ref={(input) => textInput = input}
-                  style={styles.phoneInputStyle}
-                  placeholder = {placeholder}
-                  keyboardType=""
-                  value={phoneNumber}
-                  onChangeText={onChangePhone}
-                  secureTextEntry ={false}
-                  onFocus={onChangeFocus}
-                  onBlur={onChangeBlur}
-                  autoFocus={focusInput}
-                />
-            </View>
-            <View style={styles.viewBottom}>
-              <TouchableOpacity onPress={onPressContinue}>
-                <View style={[
-                  styles.btnContinue, {backgroundColor: phoneNumber? '#244DB7' : 'gray'}]}>
-                  <Text style={styles.textContinue}>Lấy mã OTP</Text>
-                </View>
-              </TouchableOpacity>
-            <Text style={styles.textOr}>{"Hoặc"}</Text>
-            <TouchableOpacity onPress={onPressSignUp}>
-                <View style={[
-                  styles.btnContinue, {backgroundColor: '#244DB7' }]}>
-                  <Text style={styles.textContinue}>Đăng Ký</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-        </KeyboardAvoidingView>
-      </View>
-    );
-  }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    
-    },
-    containerAvoidingView: {
-      flex: 1,
-      alignItems: 'center',
-      padding: 10
-    },
-    textTitle:{
-      marginBottom: 50,
-      marginTop: 50,
-      fontSize:16
-    },
-    textOr:{
-      marginBottom: 10,
-      marginTop: 10,
-      fontSize:16
-    },
-    containerInput: {
-      flexDirection: 'row',
-      paddingHorizontal: 12,
-      borderRadius: 10,
-      backgroundColor: 'white',
-      alignItems: 'center',
-      borderBottomWidth: 1.5
+//   const handleSignInComplete = () => {
+//     if (isUserConfirmed === true) {
+//       dispatch(requestOtp(fixedPhoneNumber));
 
-    },
-    openDialogView:{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    phoneInputStyle: {
-      marginLeft: 5,
-      flex: 1,
-      height: 50
-    },
-    viewBottom:{
-      flex: 1,
-      
-      justifyContent: 'flex-end',
-      marginBottom: 50,
-      alignItems: 'center'
-    },
-    btnContinue:{
-      width: 150,
-      height: 50,
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center'
-    }, 
-    textContinue:{
-      color: '#ffffff',
-      alignItems: 'center'
-    },
+//       // Default OTP 123456 from 0971721198
+//       // dispatch(requestOtp('+84971721198'));
+//     }
+//   };
 
-    modalContainer:{
-      paddingTop: 15,
-      paddingLeft: 25,
-      paddingRight: 25,
-      flex: 1,
-      backgroundColor: 'white'
-    },
-    filterInputStyle:{
-      flex:1,
-      paddingTop: 10,
-      paddingBottom:10,
-      backgroundColor: '#fff',
-      color: '#424242'
-    },
-    countryModalStyle:{
-      flex: 1,
-      borderColor: 'black',
-      borderTopWidth: 1,
-      padding: 12,
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent:'space-between'
-    },
-    modalItemContainer:{
-      flex:1,
-      paddingLeft: 5,
-      flexDirection: 'row'
-    },
-    modalItemName:{
-      flex:1,
-      fontSize: 16
-    },
-    modalItemDiaCode:{
-      fontSize: 16
-    },
-    filterInputContainer:{
-      width: '100%',
-      flexDirection: 'row',
-      justifyContent:'center',
-      alignItems:'center'
-    },
-    closeButtonStyle:{
-      padding:12,
-      alignItems:'center'
-    },
-    closeTextStyle:{
-      padding:5,
-      fontSize:20,
-      color:'black',
-      fontWeight: 'bold'
-    }
-  })  
+//   const handleRequestOtpComplete = () => {
+//     if (otpConfirmation != null) {
+//       navigation.navigate('VerifyOTP', {phone_number: fixedPhoneNumber});
+//     }
+//   };
+
+//   const handleSignIn = (phoneNumber: string) => {
+//     if (phoneNumber.charAt(0) === '0') {
+//       dispatch(signIn({phone_number: phoneNumber}));
+//     } else {
+//       Alert.alert(
+//         'Số điện thoại không hợp lệ. Số điện thoại tại Việt Nam bắt đầu bằng số 0.',
+//       );
+//     }
+//   };
+
+//   return (
+//     <View style={styles.fullScreenContainer}>
+//       <ImageBackground
+//         source={SCREEN_SIGN}
+//         resizeMode="cover"
+//         style={styles.fullScreenContainer}>
+//         {isLoading && (
+//           <View style={styles.loading}>
+//             <ActivityIndicator animating={isLoading} size="large" />
+//           </View>
+//         )}
+//         <View style={styles.greetingContainer}>
+//           <Text style={styles.textWelcome}>{'Hey, chào mừng bạn đến với'}</Text>
+//           <Text style={styles.textTitle}>{'Pepsi Tết'}</Text>
+//         </View>
+//         <View style={styles.functionContainer}>
+//           <Text style={styles.textFunction}>{'Đăng nhập'}</Text>
+//           <Text style={styles.textPhoneNumber}>{'Số điện thoại'}</Text>
+//           <Formik
+//             initialValues={{phoneNumber: ''}}
+//             validationSchema={signInSchema}
+//             onSubmit={values => {
+//               // navigation.navigate('VerifyOTP');
+//               handleSignIn(values.phoneNumber);
+//             }}>
+//             {formik => (
+//               <KeyboardAwareScrollView>
+//                 <TextInputField
+//                   errorLabel={formik.errors.phoneNumber}
+//                   placeholder="Nhập số điện thoại"
+//                   numKeyboard={true}
+//                   inputProps={{
+//                     value: formik.values.phoneNumber,
+//                     onChangeText: (value: string) => {
+//                       formik.setFieldValue('phoneNumber', value, true);
+//                       setInputPhoneNumber(value);
+//                     },
+//                   }}
+//                   isInputInValid={
+//                     formik.errors.phoneNumber === undefined ? false : true
+//                   }
+//                 />
+//                 <Image
+//                   source={THREECANONE}
+//                   resizeMode="contain"
+//                   style={styles.image}
+//                 />
+//                 <RectangleButton
+//                   onPress={formik.submitForm}
+//                   title="Lấy mã OTP"
+//                   disabled={!formik.isValid}
+//                   backgroundImage={BUTTON_RED}
+//                 />
+//                 <Text style={styles.textOr}>{'Hoặc'}</Text>
+//                 <RectangleButton
+//                   title="Đăng kí"
+//                   titleStyle={styles.titleSignUp}
+//                   // activeStyle={styles.buttonSignUp}
+//                   onPress={() => navigation.navigate('Sign up')}
+//                   backgroundImage={BUTTON_WHITE}
+//                 />
+//               </KeyboardAwareScrollView>
+//             )}
+//           </Formik>
+//         </View>
+//       </ImageBackground>
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   fullScreenContainer: {
+//     flex: 1,
+//     borderRadius: 20,
+//     flexDirection: 'column',
+//   },
+//   loading: {
+//     position: 'absolute',
+//     left: 0,
+//     right: 0,
+//     top: 0,
+//     bottom: 0,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   greetingContainer: {
+//     flex: 25,
+//     // backgroundColor: '#035efc',
+//     paddingTop: windowHeight * 0.1,
+//     alignItems: 'center',
+//   },
+//   functionContainer: {
+//     flex: 75,
+//     // backgroundColor: '#035efc',
+//     paddingHorizontal: windowWidth * 0.05,
+//   },
+//   textWelcome: {
+//     fontSize: 20,
+//     fontWeight: '400',
+//     color: 'white',
+//   },
+//   textTitle: {
+//     fontSize: 40,
+//     fontWeight: '400',
+//     color: 'white',
+//   },
+//   textFunction: {
+//     fontSize: 20,
+//     fontWeight: '400',
+//     color: 'white',
+//     alignSelf: 'center',
+//   },
+//   textPhoneNumber: {
+//     fontSize: 12,
+//     fontWeight: '400',
+//     color: 'white',
+//   },
+//   textOr: {
+//     color: 'white',
+//     alignSelf: 'center',
+//     fontWeight: 'bold',
+//     marginTop: -windowHeight * 0.015,
+//   },
+//   image: {
+//     alignSelf: 'center',
+//   },
+//   buttonSignUp: {
+//     width: '70%',
+//     height: windowHeight * 0.08,
+//     // backgroundColor: 'white',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     alignSelf: 'center',
+//     // marginVertical: windowHeight * 0.01,
+//   },
+//   titleSignUp: {
+//     color: '#0063A7',
+//     fontSize: 25,
+//     alignSelf: 'center',
+//     fontWeight: 'bold',
+//   },
+// });
+
+// export default SignIn;

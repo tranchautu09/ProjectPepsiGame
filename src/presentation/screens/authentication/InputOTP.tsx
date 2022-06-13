@@ -1,197 +1,327 @@
-import React, {useState, useEffect, useRef} from 'react';
-import { Button, View, Text , StyleSheet, KeyboardAvoidingView} from 'react-native';
-//import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView';
-import {TextInput,TouchableOpacity} from 'react-native';
-//import {TextInput,TouchableOpacity} from 'react-native-gesture-handler';
-//import { FlatList, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+// import React, {useEffect, useRef, useState} from 'react';
+// import {
+//   Text,
+//   View,
+//   StyleSheet,
+//   Dimensions,
+//   TextInput,
+//   ImageBackground,
+// } from 'react-native';
+// import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+// import RectangleButton from '../../../components/buttons/rectangle-button';
+// import {SCREEN_SIGN} from '../../../../../ass/images';
+// import {useDispatch, useSelector} from 'react-redux';
+// import {RootState} from '../../../redux/store';
+// import {
+//   verifyOtp,
+//   requestOtp,
+// } from '../../../redux/actions/authentication.actions';
+// import TextButton from '../../../components/buttons/text-button';
 
+// const windowWidth = Dimensions.get('window').width;
+// const windowHeight = Dimensions.get('window').height;
 
-export function InputOTPScreen({ navigation }) {
-    let textInput = useRef(null)
-    let clockCall = null
-    const lengthInput = 6;
-    const defaultCountdown = 5;
-    const [internalVal, setInternalVal] = useState("")
-    const [countdown, setCountdown] = useState(defaultCountdown)
-    const [enableResend, setEnableResend] = useState(false)
+// const VerifyOtp: React.FC = (props: any) => {
+//   const {navigation} = props;
+//   const {phone_number} = props.route.params;
+//   const [otp, setOtp] = useState(new Array(6).fill(''));
+//   const [wrongOtp, setWrongOtp] = useState(false);
+//   const [codeFilled, setCodeFilled] = useState(false);
+//   const dispatch = useDispatch();
+//   const otpConfirmation = useSelector(
+//     (state: RootState) => state.authentication.otpConfirmation,
+//   );
+//   const isOtpValid = useSelector(
+//     (state: RootState) => state.authentication.isOtpValid,
+//   );
+//   const verifyOtpFailureNote = useSelector(
+//     (state: RootState) => state.authentication.verifyOtpFailureNote,
+//   );
 
-    useEffect(() =>{
-        clockCall = setInterval(() => { 
-            decrementClock();
-        }, 1000)
-        return () => {
-            clearInterval(clockCall)
-        }
-    })
+//   const passcode1Ref = useRef();
+//   const passcode2Ref = useRef();
+//   const passcode3Ref = useRef();
+//   const passcode4Ref = useRef();
+//   const passcode5Ref = useRef();
+//   const passcode6Ref = useRef();
 
-    const decrementClock = () =>{
-        if(countdown === 0){
-            setEnableResend(true)
-            setCountdown(0)
-            clearInterval(clockCall)
-        }else{
-            setCountdown(countdown -1)
-        }
-      
-    }
+//   useEffect(() => {
+//     handleOtpVerificationConplete();
+//   }, [isOtpValid]);
 
-    const onChangeText = (val) => {
-        setInternalVal(val)
-        // if(val.length === lengthInput){
-        //     navigation.navigate('Home')
-        // }
-    }
+//   useEffect(() => {
+//     handleWrongOtp();
+//   }, [verifyOtpFailureNote]);
 
-    const onResendOTP = () =>{
-        if(enableResend){
-            setCountdown(defaultCountdown)
-            setEnableResend(false)
-            clearInterval(clockCall)
-            clockCall = setInterval(() =>{
-                decrementClock()
-            },1000)
-        }
-    }
+//   const handleOtpVerificationConplete = () => {
+//     if (isOtpValid === true) {
+//       navigation.navigate('Main screen');
+//     }
+//   };
 
-    const onChangeAccept = () =>{
-        navigation.navigate('HomePage')
-    }
+//   const handleWrongOtp = () => {
+//     if (verifyOtpFailureNote === 'wrong otp code') {
+//       setWrongOtp(true);
+//     }
+//   };
 
-    useEffect(() =>{ 
-        textInput.focus() 
-      },[])
+//   const checkCodeFilled = otpCode => {
+//     let notFilled = otpCode.filter(item => item === '');
 
-    
-    
-    return (
-      <View style={styles.container}>
-            <KeyboardAvoidingView
-                keyboardVerticalOffset={50}
-                behavior={'padding'}
-                style={styles.containerAvoidingView}
-            >
-                <Text style={styles.textTile}>{"Xác minh OTP"}</Text>
-                    <View>
-                        <TextInput
-                            ref={(input) => textInput = input}
-                            onChangeText={onChangeText}
-                            style={{width:0, height: 0}}
-                            value = {internalVal}
-                            maxLength = {lengthInput}
-                            returnKeyType = "done"
-                            keyboardType = "numeric"
-                        />
-                        <View style={styles.containerInput }>
-                            {
-                                Array(lengthInput).fill().map((data,index)=>(
-                                    <View 
-                                    key={index}
-                                    style={[styles.cellView, {
-                                        borderBottomColor: index === internalVal.length ? '#FB6C6A' : '#234DB7'
-                                    }
-                                    ]}>
-                                        <Text style={styles.cellText}
-                                        onPress = {() => textInput.focus()}
-                                        >{internalVal && internalVal.length > 0 ? internalVal[index]:""}</Text>
-                                    </View>
-                                ))  
-                            }
-                            
-                        </View>
-                    </View>
-                    <View style={styles.bottomView}>
-                            <TouchableOpacity onPress={onChangeAccept}>
-                                <View style={styles.btnChangeAccept}>
-                                    <Text style={styles.textAccept}>Xác nhận</Text>
-                                </View>
+//     if (notFilled.length === 0) {
+//       setCodeFilled(true);
+//     } else {
+//       setCodeFilled(false);
+//     }
+//   };
 
-                            </TouchableOpacity>
+//   const handleChange = (text: string, index: number) => {
+//     let newOtp = otp;
+//     newOtp[index] = text;
+//     setOtp(newOtp);
+//     checkCodeFilled(newOtp);
+//   };
 
-                            <TouchableOpacity onPress={onResendOTP}>
-                                <View style={styles.btnResendOTP}>
-                                    <Text style={[
-                                        styles.textResend,
-                                        {
-                                            color: enableResend ? '#234DB7' : 'gray'
-                                        }
-                                    ]}>Gửi lại mã OTP ({countdown})</Text>
-                                </View>
+//   const handleVerifyOtp = async () => {
+//     // try {
+//     //   let res = await confirm.confirm(otp.join(''));
+//     //   console.log('res: ', res);
 
-                            </TouchableOpacity>
-                    </View>
-        
-        
-            </KeyboardAvoidingView>
-        
-      </View>
-    );
-  }
+//     //   navigation.navigate('Main screen');
+//     // } catch (error) {
+//     //   console.log('error: ', error);
 
+//     //   setWrongOtp(true);
+//     // }
+//     dispatch(verifyOtp({otp: otp.join(''), confirm: otpConfirmation}));
+//   };
 
-  const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        
-      },
-    containerAvoidingView: {
-        flex: 1,
-        alignItems: 'center',
-        padding: 10
-      },
+//   const handleResendOTP = (phoneNumber: string) => {
+//     dispatch(requestOtp(phoneNumber));
+//   };
 
+//   return (
+//     <View style={styles.fullScreenContainer}>
+//       <ImageBackground
+//         source={SCREEN_SIGN}
+//         resizeMode="cover"
+//         style={styles.fullScreenContainer}>
+//         <View style={styles.greetingContainer}>
+//           <Text style={styles.textWelcome}>{'Hey, chào mừng bạn đến với'}</Text>
+//           <Text style={styles.textTitle}>{'Pepsi Tết'}</Text>
+//         </View>
+//         <View style={styles.functionContainer}>
+//           <Text style={styles.textFunction}>{'Xác minh OTP'}</Text>
+//           <Text style={styles.textInstruction}>
+//             {wrongOtp
+//               ? 'Mã OTP không đúng, vui lòng nhập lại!'
+//               : 'Nhập mã OTP vừa được gửi đến điện thoại của bạn'}
+//           </Text>
+//           <KeyboardAwareScrollView>
+//             <View style={styles.otpContainer}>
+//               <TextInput
+//                 ref={passcode1Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => {
+//                   handleChange(value, 0);
+//                   if (value != '') passcode2Ref.current.focus();
+//                 }}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//               <TextInput
+//                 ref={passcode2Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => {
+//                   handleChange(value, 1);
+//                   if (value != '') passcode3Ref.current.focus();
+//                 }}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//               <TextInput
+//                 ref={passcode3Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => {
+//                   handleChange(value, 2);
+//                   if (value != '') passcode4Ref.current.focus();
+//                 }}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//               <TextInput
+//                 ref={passcode4Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => {
+//                   handleChange(value, 3);
+//                   if (value != '') passcode5Ref.current.focus();
+//                 }}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//               <TextInput
+//                 ref={passcode5Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => {
+//                   handleChange(value, 4);
+//                   if (value != '') passcode6Ref.current.focus();
+//                 }}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//               <TextInput
+//                 ref={passcode6Ref}
+//                 style={
+//                   wrongOtp
+//                     ? styles.passcodeContainerIncorrect
+//                     : styles.passcodeContainer
+//                 }
+//                 onChangeText={value => handleChange(value, 5)}
+//                 maxLength={1}
+//                 keyboardType="number-pad"
+//               />
+//             </View>
+//             <View style={{marginTop: windowHeight * 0.035}}>
+//               <RectangleButton
+//                 title={'Xác nhận'}
+//                 onPress={handleVerifyOtp}
+//                 disabled={!codeFilled}
+//               />
+//             </View>
+//             <View style={styles.viewResendOTP}>
+//               <Text style={styles.textResendOTP}>
+//                 {'Bạn chưa nhận được mã? '}
+//               </Text>
+//               <TextButton
+//                 title={'Gửi lại mã'}
+//                 titleStyle={styles.textButtonResendOTP}
+//                 onPress={() => handleResendOTP(phone_number)}
+//               />
+//             </View>
+//           </KeyboardAwareScrollView>
+//         </View>
+//       </ImageBackground>
+//     </View>
+//   );
+// };
 
-    textTile:{
-        marginTop:50,
-        marginBottom:50,
-        fontSize: 16
-    },
-    containerInput:{
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center'
-    },
-    cellView:{
-        paddingVertical:11,
-        width:40,
-        margin:5,
-        justifyContent:'center',
-        alignItems: 'center',
-        borderBottomWidth: 1.5
-    },
-    cellText:{
-        textAlign: 'center',
-        fontSize:16
-    },
-    bottomView:{
-        flexDirection: 'row',
-        flex: 1,
-        justifyContent: 'flex-end',
-        marginBottom: 50,
-        alignItems: 'flex-end'
-    },
-    btnChangeNumber:{
-        width:150,
-        height:50,
-        borderRadius:10, 
-        alignItems: 'flex-start',
-        justifyContent: 'center'
-    },
-    textAccept:{
-        color: '#234DB7',  
-        alignItems:'center',
-        fontSize: 15
-    },
-    btnResendOTP:{
-        width:150,
-        height:50,
-        borderRadius:10,
-        alignItems: 'flex-start',
-        justifyContent: 'center'
-    },
-    textResend:{
-        alignItems:'center',
-        fontSize: 15
-    }
+// const styles = StyleSheet.create({
+//   fullScreenContainer: {
+//     flex: 1,
+//     // backgroundColor: '#035efc',
+//     borderRadius: 20,
+//     flexDirection: 'column',
+//   },
+//   greetingContainer: {
+//     flex: 25,
+//     // backgroundColor: '#035efc',
+//     paddingTop: windowHeight * 0.1,
+//     alignItems: 'center',
+//   },
+//   functionContainer: {
+//     flex: 75,
+//     // backgroundColor: '#035efc',
+//     paddingHorizontal: windowWidth * 0.05,
+//   },
+//   textWelcome: {
+//     fontSize: 20,
+//     fontWeight: '400',
+//     color: 'white',
+//   },
+//   otpContainer: {
+//     flexDirection: 'row',
+//     alignContent: 'stretch',
+//     width: '90%',
+//     alignSelf: 'center',
+//     justifyContent: 'space-between',
+//     marginTop: windowHeight * 0.05,
+//   },
+//   passcodeContainer: {
+//     width: windowWidth * 0.12,
+//     height: windowHeight * 0.05,
+//     backgroundColor: 'white',
+//     borderRadius: 5,
+//     textAlign: 'center',
+//   },
+//   passcodeContainerIncorrect: {
+//     width: windowWidth * 0.12,
+//     height: windowHeight * 0.05,
+//     borderWidth: 1,
+//     borderColor: 'red',
+//     backgroundColor: 'white',
+//     borderRadius: 5,
+//     textAlign: 'center',
+//   },
+//   textTitle: {
+//     fontSize: 40,
+//     fontWeight: '400',
+//     color: 'white',
+//   },
+//   textFunction: {
+//     fontSize: 25,
+//     fontWeight: 'bold',
+//     color: 'white',
+//     alignSelf: 'center',
+//   },
+//   textInstruction: {
+//     fontSize: 14,
+//     fontWeight: '400',
+//     color: 'white',
+//     alignSelf: 'center',
+//   },
+//   textOr: {
+//     color: 'white',
+//     alignSelf: 'center',
+//   },
+//   image: {
+//     alignSelf: 'center',
+//   },
+//   buttonActive: {
+//     width: '70%',
+//     height: windowHeight * 0.035,
+//     backgroundColor: 'white',
+//     flexDirection: 'column',
+//     justifyContent: 'center',
+//     alignSelf: 'center',
+//     // marginTop: windowHeight * 0.05,
+//   },
+//   titleButton: {
+//     color: '#0063A7',
+//     fontSize: 25,
+//     alignSelf: 'center',
+//   },
+//   viewResendOTP: {
+//     flexDirection: 'row',
+//     alignSelf: 'center',
+//   },
+//   textResendOTP: {
+//     fontSize: 16,
+//     color: 'white',
+//   },
+//   textButtonResendOTP: {
+//     fontSize: 16,
+//     color: 'yellow',
+//   },
+// });
 
-  })
-  
+// export default VerifyOtp;
