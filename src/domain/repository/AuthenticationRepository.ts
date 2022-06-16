@@ -4,7 +4,7 @@ import {
     SignInResult,
     VerifyOtpResult,
     SignOutResult,
-  } from './../entities/authentication';
+  } from '../entities/authentication';
   import {Observable} from 'rxjs';
   
   export interface AuthenticationRepository {

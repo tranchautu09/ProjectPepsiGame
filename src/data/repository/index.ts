@@ -1,2 +1,2 @@
-export * from './AuthenticationRepository';
-export * from './AuthorizedRepository';
+export * from './AuthenticationRepositoryImpl';
+export * from './AuthorizedRepositoryImpl';

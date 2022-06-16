@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs';
 import {UseCase} from '../../../core/usecase/UseCase';
 import {SignInResult} from '../../entities/authentication';
-import {AuthenticationRepository} from '../../repositories/AuthenticationRepository';
+import {AuthenticationRepository} from '../../repository/AuthenticationRepository';
 import {injectable, inject} from 'tsyringe';
 
 @injectable()
