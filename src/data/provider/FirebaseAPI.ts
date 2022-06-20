@@ -1,4 +1,3 @@
-import {filter} from 'rxjs/operators';
 import firestore from '@react-native-firebase/firestore';
 import {Alert} from 'react-native';
 // import axios from 'axios';

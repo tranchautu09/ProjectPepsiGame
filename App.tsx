@@ -11,7 +11,8 @@
  import {Provider} from 'react-redux';
  import {registerDependencies} from './src/di/AppModule';
  
-  
+ registerDependencies();
+ 
  const App = () => {
   return (
     <Provider store={store}>
