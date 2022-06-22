@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Dimensions, ImageBackground} from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import Header from '../../../components/header/header';
-import LogoutPopup from '../../../components/popup/logout-popup';
-import RectangleButton from '../../../components/buttons/rectangle-button';
-import {SCREEN_SCAN} from '../../../../../resource/images';
-import ModalScanCodeFailed from '../../../components/popup/popup-scan-fail';
-import ModalScanCodeSuccessful from '../../../components/popup/popup-scan-success';
+import Header from '../../components/header/header';
+import LogoutPopup from '../../components/popup/LogoutPopup';
+import RectangleButton from '../../components/buttons/RectangleButton';
+import {SCREEN_SCAN} from '../../../../assets/images';
+import ModalScanCodeFailed from '../../components/popup/PopupScanFail';
+import ModalScanCodeSuccessful from '../../components/popup/PopupScanSuccess';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../redux/store';
-import {updateUser} from '../../../redux/actions/authorized.actions';
+import {RootState} from '../../redux';
+import {updateUser} from '../../redux/actions/authorized.actions';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

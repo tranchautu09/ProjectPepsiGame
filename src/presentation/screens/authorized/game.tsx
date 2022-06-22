@@ -6,18 +6,18 @@ import {
   Dimensions,
   ImageBackground,
 } from 'react-native';
-import HorizontalImageSwipeButton from '../../../components/buttons/horizotal-image-swipe-button';
-import {HEAD, SCREEN_GAME} from '../../../../../resource/images';
-import Header from '../../../components/header/header';
-import LogoutPopup from '../../../components/popup/logout-popup';
+import HorizontalImageSwipeButton from '../../components/buttons/HorizotalImageSwipeButton';
+import {HEAD, SCREEN_GAME} from '../../../../assets/images';
+import Header from '../../components/header/header';
+import LogoutPopup from '../../components/popup/LogoutPopup';
 import {
   decrementExchange,
   decrementFree,
-} from '../../../redux/slices/authorized';
+} from '../../redux';
 import {useSelector, useDispatch} from 'react-redux';
-import {RootState} from '../../../redux/store';
-import {getReward} from '../../../redux/actions/authorized.actions';
-import { signOut } from '../../../redux/actions/authentication.actions';
+import {RootState} from '../../redux';
+import {getReward} from '../../redux';
+import { signOut } from '../../redux';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

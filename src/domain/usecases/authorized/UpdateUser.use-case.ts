@@ -1,6 +1,6 @@
 import {UseCase} from '../../../core/usecase/UseCase';
 import {Observable} from 'rxjs';
-import {AuthorizedRepository} from '../../repositories/AuthorziedRepository';
+import {AuthorizedRepository} from '../../repository/AuthorziedRepository';
 import {injectable, inject} from 'tsyringe';
 import {UpdateUserResult} from '../../entities/authorized';
 

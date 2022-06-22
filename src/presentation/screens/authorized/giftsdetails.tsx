@@ -12,8 +12,8 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import Header from '../../../components/header/header';
-import RectangleButton from '../../../components/buttons/rectangle-button';
+import Header from '../../components/header/header';
+import RectangleButton from '../../components/buttons/RectangleButton';
 import {
   SCREEN_GIFTS_DETAILS,
   COIN_BADGE_BIGGER,
@@ -26,13 +26,13 @@ import {
   REWARD_JACKET,
   REWARD_TUMBLER,
   BUTTON_WHITE,
-} from '../../../../../resource/images';
-import {RootState} from '../../../redux/store';
-import {getGiftStore} from '../../../redux/actions/authorized.actions';
-import GiftFormModal from '../../../components/popup/gift-form-modal';
-import {resetIsSaveGiftDataSuccess} from '../../../redux/slices/authorized';
-import ModalMessageSuccess from '../../../components/popup/popup-message-success';
-import LogoutPopup from '../../../components/popup/logout-popup';
+} from '../../../../assets/images';
+import {RootState} from '../../redux';
+import {getGiftStore} from '../../redux/actions/authorized.actions';
+import GiftFormModal from '../../components/popup/GiftFormModal';
+import {resetIsSaveGiftDataSuccess} from '../../redux';
+import ModalMessageSuccess from '../../components/popup/PopupMessageSuccess';
+import LogoutPopup from '../../components/popup/LogoutPopup';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

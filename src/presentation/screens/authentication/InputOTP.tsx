@@ -8,15 +8,15 @@ import {
   ImageBackground,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import RectangleButton from '../../../components/buttons/rectangle-button';
-import {SCREEN_SIGN} from '../../../../../ass/images';
+import RectangleButton from '../../components/buttons/RectangleButton';
+import {SCREEN_SIGN} from '../../../../assets/images';
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../../redux/store';
+import {RootState} from '../../redux';
 import {
   verifyOtp,
   requestOtp,
-} from '../../../redux/actions/authentication.actions';
-import TextButton from '../../../components/buttons/text-button';
+} from '../../redux';
+import TextButton from '../../components/buttons/TextButton';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

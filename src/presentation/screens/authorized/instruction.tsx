@@ -12,9 +12,9 @@ import {
   SCREEN_GIFTS_DETAILS,
   INSTRUCTION_STEP_1,
   INSTRUCTION_STEP_2,
-} from '../../../../../resource/images';
-import Header from '../../../components/header/header';
-import LogoutPopup from '../../../components/popup/logout-popup';
+} from '../../../../assets/images';
+import Header from '../../components/header/header';
+import LogoutPopup from '../../components/popup/LogoutPopup';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

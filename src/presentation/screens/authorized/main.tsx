@@ -7,21 +7,21 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import {RootState} from '../../../redux/store';
+import {RootState} from '../../../presentation/redux';
 import {useSelector, useDispatch} from 'react-redux';
-import RectangleButton from '../../../components/buttons/rectangle-button';
+import RectangleButton from '../../components/buttons/RectangleButton';
 import {
   BUTTON_WHITE,
   HEAD,
   SCREEN_MAIN,
   BUTTON_PLAY_NOW,
-} from '../../../../../resource/images';
-import LogoutPopup from '../../../components/popup/logout-popup';
-import PlayTimesSelection from '../../../components/popup/double-buttons-popup';
-import Header from '../../../components/header/header';
-import {setPlayType} from '../../../redux/slices/authorized';
-import OutOfPlayTime from '../../../components/popup/single-button-popup';
-import TextButton from '../../../components/buttons/text-button';
+} from '../../../../assets/images';
+import LogoutPopup from '../../components/popup/LogoutPopup';
+import PlayTimesSelection from '../../components/popup/DoubleButtonsPopup';
+import Header from '../../components/header/header';
+import {setPlayType} from '../../redux';
+import OutOfPlayTime from '../../components/popup/SingleButtonPopup';
+import TextButton from '../../components/buttons/TextButton';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

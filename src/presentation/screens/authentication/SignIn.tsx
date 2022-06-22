@@ -9,23 +9,23 @@ import {
   Alert,
   ActivityIndicator,
 } from 'react-native';
-// import {
-//   THREECANONE,
-//   BUTTON_RED,
-//   BUTTON_WHITE,
-// } from '../../../../../resource/images';
-// import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-// import TextInputField from '../../../components/inputs/TextInputField';
-// import RectangleButton from '../../../components/buttons/rectangle-button';
-// import {SCREEN_SIGN} from '../../../../../resource/images';
-// import {Formik} from 'formik';
-// import * as Yup from 'yup';
-// import {useDispatch, useSelector} from 'react-redux';
-// import {RootState} from '../../../redux/store';
-// import {
-//   signIn,
-//   requestOtp,
-// } from '../../../redux/actions/authentication.actions';
+import {
+  THREECANONE,
+  BUTTON_RED,
+  BUTTON_WHITE,
+} from '../../../../assets/images';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import TextInputField from '../../components/inputs/TextInputField';
+import RectangleButton from '../../components/buttons/RectangleButton';
+import {SCREEN_SIGN} from '../../../../assets/images';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../redux';
+import {
+  signIn,
+  requestOtp,
+} from '../../redux';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

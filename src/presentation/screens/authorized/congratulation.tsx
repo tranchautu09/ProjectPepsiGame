@@ -8,8 +8,8 @@ import {
   Text,
 } from 'react-native';
 import Header from '../../components/header/header';
-import RectangleButton from '../../../components/buttons/rectangle-button';
-import LogoutPopup from '../../../components/popup/logout-popup';
+import RectangleButton from '../../components/buttons/RectangleButton';
+import LogoutPopup from '../../components/popup/LogoutPopup';
 import {
   SCREEN_CONGRATULATION,
   CAN_PEPSI,
@@ -19,9 +19,9 @@ import {
 } from '../../../../assets/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux';
-import {updateUser} from '../../../redux/actions/authorized.actions';
-import {resetReward} from '../../../redux/slices/authorized';
-import { signOut } from '../../../redux/actions/authentication.actions';
+import {updateUser} from '../../redux';
+import {resetReward} from '../../redux';
+import { signOut } from '../../redux';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

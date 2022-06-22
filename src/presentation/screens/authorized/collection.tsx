@@ -8,8 +8,8 @@ import {
   Dimensions,
   Text,
 } from 'react-native';
-import Header from '../../../components/header/header';
-import RectangleButton from '../../../components/buttons/rectangle-button';
+import Header from '../../components/header/header';
+import RectangleButton from '../../components/buttons/RectangleButton';
 import {
   SCREEN_COLLECTION,
   BUTTON_PLUS_ENABLE,
@@ -20,18 +20,18 @@ import {
   CAN_PEPSI,
   CAN_MIRINDA,
   CAN_SEVENUP,
-} from '../../../../../resource/images';
-import LogoutPopup from '../../../components/popup/logout-popup';
-import ImageButton from '../../../components/buttons/image-button';
-import {RootState} from '../../../redux/store';
-import ModalGift from '../../../components/popup/gift-modal';
-import ModalGiftReveal from '../../../components/popup/gift-reveal-modal';
+} from '../../../../assets/images';
+import LogoutPopup from '../../components/popup/LogoutPopup';
+import ImageButton from '../../components/buttons/ImageButton';
+import {RootState} from '../../redux';
+import ModalGift from '../../components/popup/GiftModal';
+import ModalGiftReveal from '../../components/popup/GiftRevealModal';
 import {
   exchangeCombo,
   updateUser,
-} from '../../../redux/actions/authorized.actions';
-import {resetExchangeComboResult} from '../../../redux/slices/authorized';
-import {signOut} from '../../../redux/actions/authentication.actions';
+} from '../../redux';
+import {resetExchangeComboResult} from '../../redux';
+
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

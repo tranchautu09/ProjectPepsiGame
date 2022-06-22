@@ -12,6 +12,8 @@
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.12",
     "@react-native-firebase/app": "^14.11.1",
+    "@react-native-firebase/auth": "^15.0.0",
+    "@react-native-firebase/firestore": "^15.0.0",
     "@react-native-masked-view/masked-view": "^0.2.6",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
@@ -46,6 +48,7 @@
     "@babel/plugin-proposal-decorators": "^7.18.2",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/": "react-navigation/native",
     "@types/jest": "^28.1.2",
     "@types/react": "^18.0.14",
     "@types/react-native": "^0.67.8",

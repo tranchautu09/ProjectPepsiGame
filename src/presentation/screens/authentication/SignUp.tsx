@@ -8,19 +8,19 @@ import {
   Alert,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import TextInputField from '../../../components/inputs/TextInputField';
-import RectangleButton from '../../../components/buttons/rectangle-button';
-import TextButton from '../../../components/buttons/text-button';
+import TextInputField from '../../components/inputs/TextInputField';
+import RectangleButton from '../../components/buttons/RectangleButton';
+import TextButton from '../..//components/buttons/TextButton';
 import CheckBox from '@react-native-community/checkbox';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {BUTTON_WHITE, SCREEN_SIGN} from '../../../../../resource/images';
+import {BUTTON_WHITE, SCREEN_SIGN} from '../../../../assets/images';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   requestOtp,
   signUp,
-} from '../../../redux/actions/authentication.actions';
-import {RootState} from '../../../redux/store';
+} from '../../redux';
+import {RootState} from '../../redux';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

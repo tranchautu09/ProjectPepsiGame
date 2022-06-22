@@ -1,5 +1,5 @@
 import {UseCase} from '../../../core/usecase/UseCase';
-import {AuthorizedRepository} from '../../repositories/AuthorziedRepository';
+import {AuthorizedRepository} from '../../repository/AuthorziedRepository';
 import {injectable, inject} from 'tsyringe';
 import {Observable} from 'rxjs';
 import {GetRewardResult} from '../../entities/authorized';
