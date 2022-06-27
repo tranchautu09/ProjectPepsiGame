@@ -75,8 +75,7 @@ const SignIn: React.FC = (props: any) => {
     if (isUserConfirmed === true) {
       dispatch(requestOtp(fixedPhoneNumber));
 
-      // Default OTP 123456 from 0971721198
-      // dispatch(requestOtp('+84971721198'));
+      
     }
   };
 

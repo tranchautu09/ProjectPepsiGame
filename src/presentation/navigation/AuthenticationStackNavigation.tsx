@@ -1,7 +1,7 @@
 import React from 'react';
 import Detail from '../screens/authentication/Detail';
 import SignIn from '../screens/authentication/SignIn';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import SignUp from '../screens/authentication/SignUp';
 import VerifyOtp from '../screens/authentication/InputOTP';
 import MainScreen from '../screens/authorized/main';
@@ -12,7 +12,7 @@ import Collection from '../screens/authorized/collection';
 import GiftsDetails from '../screens/authorized/giftsdetails';
 import Instruction from '../screens/authorized/instruction';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 export const AuthenticationNavigatior: React.FC = () => {
   return (
